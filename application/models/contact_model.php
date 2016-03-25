@@ -64,21 +64,62 @@ public function contactSubmit($name,$email,$phone,$message){
 
 $this->db->query("INSERT INTO `adyabackend_contact`(`name`,`phone`,`email`,`message`) VALUE('$name','$phone','$email','$message')");
 $id=$this->db->insert_id();
+$message = "
+<html><body><div id=':1fn' class='a3s adM' style='overflow: hidden;'>
+<p style='color:#000;font-family:Roboto;font-size:14px'>Name : $name <br/>
+Phone : $phone <br/>
+Email : $email <br/>
+Message : $message
+</p>
+
+</div></body></html>";
+if(!empty($email))
+{
+
+$url = 'https://api.sendgrid.com/';
+$user = 'poojathakare';
+$pass = 'wohlig123';
+$request =  $url.'api/mail.send.json';
+
+$json_string = array(
+
+'to' => array(
+'vinodwohlig@gmail.com'
+),
+'category' => 'test_category'
+);
+print_r($json_string);
+echo "in mailer";
+$params = array(
+'api_user'  => $user,
+'api_key'   => $pass,
+'x-smtpapi' => json_encode($json_string),
+'to'        => 'adya@adyadairy.com',
+'subject'   => 'Contact Form Submission',
+'html'      => $message,
+'text'      => 'testttttttttt',
+'from'      => 'adya@adyadairy.com',
+//  'from'      => 'info@willnevergrowup.com',
+);
+
+$session = curl_init($request);
+// Tell curl to use HTTP POST
+curl_setopt ($session, CURLOPT_POST, true);
+// Tell curl that this is the body of the POST
+curl_setopt ($session, CURLOPT_POSTFIELDS, $params);
+// Tell curl not to return headers, but do return the response
+curl_setopt($session, CURLOPT_HEADER, false);
+// Tell PHP not to use SSLv3 (instead opting for TLS)
+curl_setopt($session, CURLOPT_SSLVERSION, CURL_SSLVERSION_TLSv1_2);
+curl_setopt($session, CURLOPT_RETURNTRANSFER, true);
+// print everything out
+print_r($response);
+
+// obtain response
+}
+
   if(!empty($id))
   {
-    //send email for subscription
-         $this->load->library('email');
-         $this->email->from('vigwohlig@gmail.com', 'Adya');
-         $this->email->to($email);
-         $this->email->subject('Your Adya Contact Form Submission');
-
-         $message = "<html><body><div id=':1fn' class='a3s adM' style='overflow: hidden;'>
-           <p>Dear $name</p>
-           <p>Thank You for Contacting us we will get back to you shortly !</p>
-         </div></body></html>";
-         $this->email->message($message);
-         $this->email->send();
-
     $object = new stdClass();
     $object->value = true;
     return $object;
