@@ -64,7 +64,7 @@ public function contactSubmit($name,$email,$phone,$message){
 
 $this->db->query("INSERT INTO `adyabackend_contact`(`name`,`phone`,`email`,`message`) VALUE('$name','$phone','$email','$message')");
 $id=$this->db->insert_id();
-$message = "
+$msg = "
 <html><body><div id=':1fn' class='a3s adM' style='overflow: hidden;'>
 <p style='color:#000;font-family:Roboto;font-size:14px'>Name : $name <br/>
 Phone : $phone <br/>
@@ -75,47 +75,7 @@ Message : $message
 </div></body></html>";
 if(!empty($email))
 {
-
-$url = 'https://api.sendgrid.com/';
-$user = 'poojathakare';
-$pass = 'wohlig123';
-$request =  $url.'api/mail.send.json';
-
-$json_string = array(
-
-'to' => array(
-'vinodwohlig@gmail.com'
-),
-'category' => 'test_category'
-);
-print_r($json_string);
-echo "in mailer";
-$params = array(
-'api_user'  => $user,
-'api_key'   => $pass,
-'x-smtpapi' => json_encode($json_string),
-'to'        => 'adya@adyadairy.com',
-'subject'   => 'Contact Form Submission',
-'html'      => $message,
-'text'      => 'testttttttttt',
-'from'      => 'adya@adyadairy.com',
-//  'from'      => 'info@willnevergrowup.com',
-);
-
-$session = curl_init($request);
-// Tell curl to use HTTP POST
-curl_setopt ($session, CURLOPT_POST, true);
-// Tell curl that this is the body of the POST
-curl_setopt ($session, CURLOPT_POSTFIELDS, $params);
-// Tell curl not to return headers, but do return the response
-curl_setopt($session, CURLOPT_HEADER, false);
-// Tell PHP not to use SSLv3 (instead opting for TLS)
-curl_setopt($session, CURLOPT_SSLVERSION, CURL_SSLVERSION_TLSv1_2);
-curl_setopt($session, CURLOPT_RETURNTRANSFER, true);
-// print everything out
-print_r($response);
-
-// obtain response
+	$this->email_model->emailer($msg,'Contact Form Submission',$email,$username);
 }
 
   if(!empty($id))
