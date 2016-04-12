@@ -12,11 +12,11 @@
                             <th data-field="logintype">Login Type</th>
                             <th data-field="accesslevelname">Item Name</th>
                             <th data-field="">Action</th>
-            
+
                         </tr>
                     </thead>
                     <tbody>
-            
+
                     </tbody>
                 </table>
             </div>
@@ -27,7 +27,7 @@
 
     </div>
      <div class="createbuttonplacement"><a class="btn-floating btn-large waves-effect waves-light blue darken-4 tooltipped" href="<?php echo site_url("site/createuser"); ?>" data-position="top" data-delay="50" data-tooltip="Create"><i class="material-icons">add</i></a></div>
-      
+
 </div>
 <script>
     function drawtable(resultrow) {

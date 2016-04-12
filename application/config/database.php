@@ -55,10 +55,10 @@ $myserver=$_SERVER['SERVER_NAME'];
 if($myserver!="localhost")
 {
     $db['default']['hostname'] = 'localhost';
-    $db['default']['username'] = 'root';
-    $db['default']['password'] = '';
-    $db['default']['database'] = 'adyabackend';
-    $db['default']['dbdriver'] = 'mysqli';
+    $db['default']['username'] = 'wohligco_adya';
+    $db['default']['password'] = 'chintan123';
+    $db['default']['database'] = 'wohligco_adya';
+    $db['default']['dbdriver'] = 'mysql';
     $db['default']['dbprefix'] = '';
     $db['default']['pconnect'] = TRUE;
     $db['default']['db_debug'] = TRUE;
