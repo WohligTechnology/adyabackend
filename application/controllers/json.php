@@ -59,6 +59,12 @@ $id=$this->input->get_post("id");
 $data["message"]=$this->contact_model->getsinglecontact($id);
 $this->load->view("json",$data);
 }
+public function getCareers()
+{
+// $id=$this->input->get_post("id");
+$data["message"]=$this->careers_model->getCareers();
+$this->load->view("json",$data);
+}
 public function contactSubmit()
 {
   $data = json_decode(file_get_contents('php://input'), true);

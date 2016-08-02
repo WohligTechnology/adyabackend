@@ -62,8 +62,7 @@ return $return;
 
 public function contactSubmit($name,$email,$phone,$message){
 
-$this->db->query("INSERT INTO `adyabackend_contact`(`name`,`phone`,`email`,`message`) VALUE('$name','$phone','$email','$message')");
-$id=$this->db->insert_id();
+
 $msg = "
 <html><body><div id=':1fn' class='a3s adM' style='overflow: hidden;'>
 <p style='color:#000;font-family:Roboto;font-size:14px'>Name : $name <br/>
@@ -73,17 +72,16 @@ Message : $message
 </p>
 
 </div></body></html>";
-if(!empty($email))
+if(!empty($email) && !empty($phone) && !empty($name) )
 {
+  $this->db->query("INSERT INTO `adyabackend_contact`(`name`,`phone`,`email`,`message`) VALUE('$name','$phone','$email','$message')");
+  $id=$this->db->insert_id();
 	$this->email_model->emailer($msg,'Contact Form Submission',$email,$username);
+  $object = new stdClass();
+  $object->value = true;
+  return $object;
 }
 
-  if(!empty($id))
-  {
-    $object = new stdClass();
-    $object->value = true;
-    return $object;
-  }
   else {
 
     $object = new stdClass();
