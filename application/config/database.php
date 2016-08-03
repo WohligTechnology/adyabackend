@@ -24,9 +24,7 @@
 |	['db_debug'] TRUE/FALSE - Whether database errors should be displayed.
 |	['cache_on'] TRUE/FALSE - Enables/disables query caching
 |	['cachedir'] The path to the folder where cache files should be stored
-|	['char_set'] The character set used in communicating with the database
-|	['dbcollat'] The character collation used in communicating with the database
-|				 NOTE: For MySQL and MySQLi databases, this setting is only used
+|	['char_set'] The character set used in communicatiwohlig.co.in/adyabackendsetting is only used
 | 				 as a backup if your server is running PHP < 5.2.3 or MySQL < 5.0.7
 |				 (and in table creation queries made with DB Forge).
 | 				 There is an incompatibility in PHP with mysql_real_escape_string() which
