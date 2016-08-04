@@ -150,7 +150,7 @@ class Site extends CI_Controller
                 $this->image_lib->initialize($config_r);
                 if(!$this->image_lib->resize())
                 {
-                    echo "Failed." . $this->image_lib->display_errors();
+                    // echo "Failed." . $this->image_lib->display_errors();
                     //return false;
                 }
                 else
@@ -366,7 +366,7 @@ class Site extends CI_Controller
                 $this->image_lib->initialize($config_r);
                 if(!$this->image_lib->resize())
                 {
-                    echo "Failed." . $this->image_lib->display_errors();
+                    // echo "Failed." . $this->image_lib->display_errors();
                     //return false;
                 }
                 else
@@ -853,7 +853,4 @@ $this->careers_model->delete($this->input->get("id"));
 $data["redirect"]="site/viewcareers";
 $this->load->view("redirect",$data);
 }
-
-
 }
-?>

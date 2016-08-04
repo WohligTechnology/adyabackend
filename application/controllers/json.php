@@ -76,4 +76,4 @@ $data["message"]=$this->contact_model->contactSubmit($name,$email,$phone,$messag
 $this->load->view("json",$data);
 }
 
-} ?>
+}

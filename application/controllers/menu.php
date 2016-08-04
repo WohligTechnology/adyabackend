@@ -1,10 +1,10 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-class Menu extends CI_Controller 
+class Menu extends CI_Controller
 {
 	public function __construct( )
 	{
 		parent::__construct();
-		
+
 		$this->is_logged_in();
 	}
 	function is_logged_in( )
@@ -27,9 +27,9 @@ class Menu extends CI_Controller
 		$this->checkaccess($access);
 		$data[ 'page' ] = 'dashboard';
 		$data[ 'title' ] = 'Welcome';
-		$this->load->view( 'template', $data );	
+		$this->load->view( 'template', $data );
 	}
-	
+
 	//Menu
 	public function createmenu()
 	{
@@ -39,7 +39,7 @@ class Menu extends CI_Controller
 		$data['parentmenu']=$this->menu_model->getmenu();
 		$data[ 'page' ] = 'createmenu';
 		$data[ 'title' ] = 'Create menu';
-		$this->load->view( 'template', $data );	
+		$this->load->view( 'template', $data );
 	}
 	function createmenusubmit()
 	{
@@ -53,7 +53,7 @@ class Menu extends CI_Controller
 		$this->form_validation->set_rules('parentmenu','parent','trim');
 		$this->form_validation->set_rules('order','order','trim');
 		$this->form_validation->set_rules('isactive','Active','trim');
-		if($this->form_validation->run() == FALSE)	
+		if($this->form_validation->run() == FALSE)
 		{
 			$data['alerterror'] = validation_errors();
 			$data['accesslevel']=$this->user_model->getaccesslevels();
@@ -78,7 +78,7 @@ class Menu extends CI_Controller
 			$data['alerterror']="New menu could not be created.";
 			else
 			$data['alertsuccess']="menu created Successfully.";
-			
+
 			$data['table']=$this->menu_model->viewmenu();
 			$data['redirect']="menu/viewmenu";
 			//$data['other']="template=$template";
@@ -120,7 +120,7 @@ class Menu extends CI_Controller
 		$this->form_validation->set_rules('parent','parent','trim');
 		$this->form_validation->set_rules('order','order','trim');
 		$this->form_validation->set_rules('isactive','Active','trim');
-		if($this->form_validation->run() == FALSE)	
+		if($this->form_validation->run() == FALSE)
 		{
 			$data['alerterror'] = validation_errors();
 			$data['accesslevel']=$this->user_model->getaccesslevels();
@@ -151,7 +151,7 @@ class Menu extends CI_Controller
 			$data['redirect']="menu/viewmenu";
 			//$data['other']="template=$template";
 			$this->load->view("redirect",$data);
-			
+
 		}
 	}
 	function deletemenu()
@@ -166,4 +166,3 @@ class Menu extends CI_Controller
 		$this->load->view('template',$data);
 	}
 }
-?>

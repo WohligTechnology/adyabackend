@@ -94,4 +94,3 @@ class Image extends CI_Controller {
         }
     }
 }
-?>
