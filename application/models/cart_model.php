@@ -37,4 +37,3 @@ $query=$this->db->query("DELETE FROM `fynx_cart` WHERE `id`='$id'");
 return $query;
 }
 }
-?>

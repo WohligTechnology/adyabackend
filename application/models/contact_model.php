@@ -88,8 +88,5 @@ if(!empty($email) && !empty($phone) && !empty($name) )
     $object->value = false;
     return $object;
   }
-
-
 }
 }
-?>
