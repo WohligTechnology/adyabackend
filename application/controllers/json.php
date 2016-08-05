@@ -68,12 +68,17 @@ $this->load->view("json",$data);
 public function contactSubmit()
 {
   $data = json_decode(file_get_contents('php://input'), true);
-  $name = $data['name'];
-  $email = $data['email'];
-  $phone = $data['number'];
-  $message = $data['msg'];
-$data["message"]=$this->contact_model->contactSubmit($name,$email,$phone,$message);
-$this->load->view("json",$data);
+  if(empty($data)){
+    $data["message"]=0;
+  }
+  else{
+    $name = $data['name'];
+    $email = $data['email'];
+    $phone = $data['number'];
+    $message = $data['msg'];
+    $data["message"]=$this->contact_model->contactSubmit($name,$email,$phone,$message);
+  }
+  $this->load->view("json",$data);
 }
 
 }

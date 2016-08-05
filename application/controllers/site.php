@@ -4,7 +4,7 @@ class Site extends CI_Controller
 	public function __construct( )
 	{
 		parent::__construct();
-
+		$this->output->enable_profiler(TRUE);
 		$this->is_logged_in();
 	}
 	function is_logged_in( )
